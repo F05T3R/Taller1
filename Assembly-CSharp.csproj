@@ -53,11 +53,12 @@
     <UnityVersion>2020.3.16f1</UnityVersion>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="Assets\Script\PuntosVida.cs" />
     <Compile Include="Assets\Script\PlayerMove.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Assets\UI\Corazón.uss" />
+    <Compile Include="Assets\Script\PuntosVida.cs" />
+    <Compile Include="Assets\Script\Daño.cs" />
+    <Compile Include="Assets\Script\MoneyCollected.cs" />
+    <Compile Include="Assets\Script\GemCollected.cs" />
+    <Compile Include="Assets\Script\KeyCollected.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">
