@@ -54,11 +54,12 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="Assets\Script\PlayerMove.cs" />
-    <Compile Include="Assets\Script\PuntosVida.cs" />
     <Compile Include="Assets\Script\Daño.cs" />
     <Compile Include="Assets\Script\MoneyCollected.cs" />
-    <Compile Include="Assets\Script\GemCollected.cs" />
     <Compile Include="Assets\Script\KeyCollected.cs" />
+    <Compile Include="Assets\Script\PuntosVida.cs" />
+    <Compile Include="Assets\Script\GemCollected.cs" />
+    <Compile Include="Assets\Script\CheckGround.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">

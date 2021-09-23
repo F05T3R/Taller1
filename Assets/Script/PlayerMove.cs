@@ -4,33 +4,69 @@ using UnityEngine;
 
 public class PlayerMove : MonoBehaviour
 {
+    public float velocidad;
+    public float velocidadMaxima;
 
-    public float velocidadMovimiento = 2;
+    public float salto;
+    public bool patasColisionadas = false;
 
-    public float salto = 3;
+    private Rigidbody2D rBody2D;
+    private float horizontal;
+    private Animator animaPlayer;
 
-    private Rigidbody2D rbody2D;
-
+    private bool derecha = true;
+    
 
     void Start()
     {
-        rbody2D = GetComponent<Rigidbody2D>();
+        rBody2D = GetComponent<Rigidbody2D>();
+        animaPlayer = GetComponent<Animator>();
     }
 
-    // Update is called once per frame
-    void FixedUpdate()
+    void Update()
     {
-        if (Input.GetKey("d"))
+
+        giroX(horizontal);
+        animaPlayer.SetFloat("EjeX", Mathf.Abs(rBody2D.velocity.x));
+        animaPlayer.SetFloat("EjeY", rBody2D.velocity.y);
+        animaPlayer.SetBool("Toca suelo", patasColisionadas);
+
+        patasColisionadas = CheckGround.patasColisionadas;
+        if (Input.GetButtonDown("Jump") && patasColisionadas)
         {
-            rbody2D.velocity = new Vector2(velocidadMovimiento, rbody2D.velocity.y);
+
+            rBody2D.velocity = new Vector2(rBody2D.velocity.x, 0f);
+            rBody2D.AddForce(new Vector2(0, salto), ForceMode2D.Impulse);
         }
-        else if (Input.GetKey("a"))
+
+       
+    }
+
+    private void FixedUpdate()
+    {
+        horizontal = Input.GetAxisRaw("Horizontal");
+        rBody2D.AddForce(Vector2.right * velocidad * horizontal);
+
+        
+
+        float limiteVelocidad = Mathf.Clamp(rBody2D.velocity.x, -velocidadMaxima, velocidadMaxima);
+        rBody2D.velocity = new Vector2(limiteVelocidad, rBody2D.velocity.y);
+
+        
+        
+    }
+
+    public void giroX(float h)
+    {
+        if((h > 0 && !derecha) || h < 0 && derecha)
         {
-            rbody2D.velocity = new Vector2(-velocidadMovimiento, rbody2D.velocity.y);
-        }
-        else
-        {
-            rbody2D.velocity = new Vector2(0, rbody2D.velocity.y);
+            derecha = !derecha;
+            Vector3 escalaGiro = transform.localScale;
+            escalaGiro.x = escalaGiro.x * -1;
+            transform.localScale = escalaGiro;
         }
     }
+
+    
+
 }
