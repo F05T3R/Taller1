@@ -60,6 +60,7 @@
     <Compile Include="Assets\Script\PuntosVida.cs" />
     <Compile Include="Assets\Script\GemCollected.cs" />
     <Compile Include="Assets\Script\CheckGround.cs" />
+    <Compile Include="Assets\Script\Enemy.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">

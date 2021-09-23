@@ -4,9 +4,31 @@ using UnityEngine;
 
 public class PuntosVida : MonoBehaviour
 {
-    #region CLASS_VARIABLE
+    public float health;
+    public float maxHealth;
 
-    public int corazones = 3;
+    private void Start()
+    {
+        health = maxHealth;
+    }
 
-    #endregion
+    private void Update()
+    {
+        if(health > maxHealth)
+        {
+            health = maxHealth;
+        }
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.CompareTag("Enemy"))
+        {
+            health -= collision.GetComponent<Enemy>().damageToGive;
+            if(health <= 0)
+            {
+                
+            }
+        }
+    }
 }
