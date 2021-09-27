@@ -4,12 +4,17 @@ using UnityEngine;
 
 public class Daño : MonoBehaviour
 {
+
+    public float daño;
+    public PuntosVida life;
+
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.transform.CompareTag("Player")) {
+        if (collision.gameObject.CompareTag("Player")) {
 
-            Debug.Log("Player Damaged");
-            Destroy(collision.gameObject);
+
+            life.contadorCorazon--;
+
 
         }
     }
